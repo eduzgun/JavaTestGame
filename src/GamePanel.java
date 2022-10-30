@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (!game.started) {
             g2D.setFont(new Font("Arial", Font.PLAIN, 60));
-            g2D.drawString("Press SPACE to start", App.WIDTH/2, App.HEIGHT/2);
+            g2D.drawString("Press SPACE to start", 490, 350);
         } else {
             g2D.setFont(new Font("Arial", Font.PLAIN, 30));
             g2D.drawString(Integer.toString(game.score), 10, 465);
@@ -39,7 +39,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (game.gameover) {
             g2D.setFont(new Font("Arial", Font.PLAIN, 60));
-            g2D.drawString("Press R to restart", 150, 240);
+            g2D.drawString("GAME OVER", 300, 140);
+            g2D.drawString("Press R to restart", 300, 240);
         }
     }
 

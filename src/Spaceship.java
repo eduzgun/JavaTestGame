@@ -15,9 +15,9 @@ public class Spaceship {
     private Image image;
     private Keyboard keyboard;
 
-    public Spaceship() {
-        x = 600; // x spawn cord
-        y = 500; // y spawn cord
+    public Spaceship(int startX, int startY) {
+        x = startX; // x spawn cord
+        y = startY; // y spawn cord
         width = 100;
         height = 100;
 
@@ -26,15 +26,33 @@ public class Spaceship {
         keyboard = Keyboard.getInstance();
     }
 
-    public void update() {
+    public void update(String shipNum) {
 
+        if (!dead && shipNum == "1") {
+            if (x<=0)
+                x = 0;
+            if (x>=600)
+                x = 600;
+            if (keyboard.isDown(KeyEvent.VK_A)) {
+               x -= 10;
+            }
+            if (keyboard.isDown(KeyEvent.VK_D)) {
+                x += 10;
+            }
+        }
+        else if (!dead && shipNum == "2") {
+            if (x>= 1150)
+                x = 1150;
+            if (x<=600)
+                x = 600;
+            if (keyboard.isDown(KeyEvent.VK_LEFT)) {
+                x -= 10;
+            }
+            if (keyboard.isDown(KeyEvent.VK_RIGHT)) {
+                x += 10;
+            }
+        }
 
-        if (!dead && keyboard.isDown(KeyEvent.VK_LEFT)) {
-            x -= 10;
-        }
-         if (!dead && keyboard.isDown(KeyEvent.VK_RIGHT)) {
-            x += 10;
-        }
 
     }
 

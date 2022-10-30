@@ -11,7 +11,8 @@ public class Game {
     private int restartDelay;
     private int ufoDelay;
 
-    private Spaceship ship;
+    private Spaceship ship1;
+    private Spaceship ship2;
     private ArrayList<Ufo> ufos;
 
     private Keyboard keyboard;
@@ -35,7 +36,8 @@ public class Game {
         restartDelay = 0;
         ufoDelay = 0;
 
-        ship = new Spaceship();
+        ship1 = new Spaceship(0, 500);
+        ship2 = new Spaceship(900, 500);
         ufos = new ArrayList<Ufo>();
     }
 
@@ -51,7 +53,9 @@ public class Game {
         if (paused)
             return;
 
-        ship.update();
+
+        ship1.update("1");
+        ship2.update("2");
 
         if (gameover)
             return;
@@ -66,7 +70,8 @@ public class Game {
         for (Ufo ufo : ufos)
             renders.add(ufo.getRender());
         //renders.add(new Render(0, 0, "graphics/foreground.png"));
-        renders.add(ship.getRender());
+        renders.add(ship1.getRender());
+        renders.add(ship2.getRender());
         return renders;
     }
 
@@ -152,11 +157,21 @@ public class Game {
     private void checkForCollisions() {
 
         for (Ufo ufo : ufos) {
-            if (ufo.collides(ship)) {
+            if (ufo.collides(ship1)) {
                 gameover = true;
-                ship.dead = true;
+                ship1.dead = true;
                 System.out.println("GAME OVER");
-            } else if (ufo.y >= ship.y) {
+            } else if (ufo.y >= ship1.y) {
+                score++;
+            }
+        }
+
+        for (Ufo ufo : ufos) {
+            if (ufo.collides(ship2)) {
+                gameover = true;
+                ship2.dead = true;
+                System.out.println("GAME OVER");
+            } else if (ufo.y >= ship2.y) {
                 score++;
             }
         }

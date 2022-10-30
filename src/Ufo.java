@@ -7,7 +7,7 @@ public class Ufo {
     public int y;
     public int width;
     public int height;
-    public int speed = 15;
+    public int speed = 10;
     private Spaceship spaceship;
     public Random rand;
 
